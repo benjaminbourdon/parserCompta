@@ -1,0 +1,25 @@
+<table>
+    <caption>Récapitulatif des dettes et créances de {nom} ({id}) au {dateReleve:%d/%m/%y}</caption>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Intitulé</th>
+            <th>Montant</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>{dateInitiale:%d/%m/%Y}</th>
+            <th>Solde initial</th>
+            <th>{soldeInitial}</th>
+        </tr>
+        {mouvements:html date:%d/%m/%Y|intitule|montant:+.2f}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>{dateReleve:%d/%m/%Y}</th>
+            <th>Solde actuel</th>
+            <th>{soldeActuel:+.2f}</th>
+        </tr>
+    </tfoot>
+</table>
