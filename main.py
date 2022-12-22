@@ -36,9 +36,6 @@ class CompteAuxiliaire:
             f"Ton solde actuel est de {self.soldeActuel:+.2f}€ au {DATE_RELEVE:%d/%m/%y}.</p>\n"
             f"<p>Afin d'équilibrer tes comptes, nous te demandons d'effectuer un virement de la somme exacte, "
             f"idéalement sous 7 jours.<br/>\n"
-            f"Attention, le compte bancaire de l'association à changer. Les nouvelles coordonnées bancaires sont :<br/>\n"
-            f"IBAN : FR76 1027 8060 7600 0207 5320 149<br/>\n"
-            f"BIC : CMCIFR2A</p>\n"
             f"<p>Tu trouveras ci-dessous le détail de tes dettes et créances de la saison.\n"
             f"Je t'invite à revenir vers nous en cas de question : tresorier@revos.fr</p>\n")
 

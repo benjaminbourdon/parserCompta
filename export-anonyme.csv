@@ -1,0 +1,43 @@
+Compte,Id pièce,Date,Intitulé,Personne,Débit (EUR),Crédit (EUR),Solde (EUR)
+467000,467000 - 8166583 - Jean MUTIN,,,,,,
+467000,Début,,Cumul au 01/07/21,,0,0,0
+467000,25880507,21/04/2022,Adhésion 21-22 - Transaction #7233665,Jean MUTIN,"1,5",,1.5 D
+467000,25880507,21/04/2022,Adhésion 21-22 - Transaction #7233665,Jean MUTIN,40,,41.5 D
+467000,25931036,21/04/2022,Paiement - Adhésion 21-22 - Transaction #7233665,Jean MUTIN,,"41,5",0
+467000,Fin,,Total,,"41,5","41,5",0
+,,,,,,,
+467000,467000 - 8137841 - Alma PLAN,,,,,,
+467000,Début,,Cumul au 01/07/21,,0,0,0
+467000,25948187,25/04/2022,Week-end d'intégration des Revos 2022 - Transaction #7252074,Alma PLAN,45,,45 D
+467000,25972680,25/04/2022,Paiement - Week-end d'intégration des Revos 2022 - Transaction #7252074,Alma PLAN,,45,0
+467000,26004881,28/04/2022,Week-end d'intégration des Revos 2022 - Transaction #7267955,Alma PLAN,"47,85",,47.85 D
+467000,26044911,28/04/2022,Paiement - Week-end d'intégration des Revos 2022 - Transaction #7267955,Alma PLAN,,"47,85",0
+467000,Fin,,Total,,"92,85","92,85",0
+,,,,,,,
+467000,467000 - 7441304 - Maelle LOPEZ,,,,,,
+467000,Début,,Cumul au 01/07/21,,0,0,0
+467000,26566528,26/04/2022,Licence et assurance FFFD,Maelle LOPEZ,40,,40 D
+467000,26257020,13/05/2022,Vente Disques Révos 2022 - Transaction #7341447,Maelle LOPEZ,13,,53 D
+467000,26315861,13/05/2022,Paiement - Vente Disques Révos 2022 - Transaction #7341447,Maelle LOPEZ,,13,40 D
+467000,Fin,,Total,,53,13,40 D
+,,,,,,,
+467000,467000 - 8273144 - Patrick DEDE,,,,,,
+467000,Début,,Cumul au 01/07/21,,0,0,0
+467000,26638060,19/05/2022,Licence et assurance FFFD,Patrick DEDE,"61,5",,61.5 D
+467000,27145658,21/05/2022,Championnat Outdoor Nationale 1 2022 Phase 1 Nemours,Patrick DEDE,"73,3",,134.8 D
+467000,Fin,,Total,,"134,8",0,134.8 D
+,,,,,,,
+467000,467000 - 5709036 - Mohamed LEE,,,,,,
+467000,Début,,Cumul au 01/07/21,,10,0,10 D
+467000,24738323,25/09/2021,Beach OPEN 2021,Mohamed LEE,"40,03",,50.03 D
+467000,24743449,19/11/2021,MUIC Madrid 2021,Mohamed LEE,"202,8",,252.83 D
+467000,24801742,07/12/2021,Beach OPEN 2021 -  - Paiement du 07/12/2021,Mohamed LEE,,250,2.83 D
+467000,25557959,11/12/2021,Soirée du club 2021,Mohamed LEE,5,,7.83 D
+467000,25568257,11/12/2021,Soirée CLUB - Courses alimentaires,Mohamed LEE,,105,97.17 C
+467000,Fin,,Total,,"257,83",355,97.17 C
+,,,,,,,
+467000,467000 - 8376212 - Isabela NDIAYE,,,,,,
+467000,Début,,Cumul au 01/07/21,,0,0,0
+467000,27309783,18/06/2022,Open de Touraine 2022,Isabela NDIAYE,"58,33",,58.33 D
+467000,Fin,,Total,,"58,33",0,58.33 D
+,,,,,,,
