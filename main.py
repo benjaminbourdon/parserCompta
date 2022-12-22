@@ -8,16 +8,16 @@ class CompteAuxiliaire:
 
     def __init__(self, extraction):
         ligne = next(extraction)
-        self.id, self.nom = ligne['Id pièce'][9:].split(" - ", 2)
+        self.id, self.nom = ligne['Id piece'][9:].split(" - ", 2)
 
         ligne = next(extraction)
         self.soldeInitial = self.soldeStrToDecimal(ligne['Solde (EUR)'])
-        self.dateInitiale = datetime.strptime(ligne['Intitulé'][-8:], '%d/%m/%y')
+        self.dateInitiale = datetime.strptime(ligne['Intitule'][-8:], '%d/%m/%y')
 
         ligne = next(extraction)
         self.mouvements = DictLignesComptables()
-        while ligne['Id pièce'] != "Fin":
-            self.mouvements[ligne['Id pièce']] = LigneComptable(ligne)
+        while ligne['Id piece'] != "Fin":
+            self.mouvements[ligne['Id piece']] = LigneComptable(ligne)
             ligne = next(extraction)
 
         self.soldeActuel = self.soldeStrToDecimal(ligne['Solde (EUR)'])
@@ -30,13 +30,13 @@ class CompteAuxiliaire:
                 f'  color : green ; }}\n'
                 f'</style>\n')
         intro = (
-            f"<p style=\"gray\">Remarque : ce message est envoyé depuis une adresse générique, ne pas répondre.</p>\n"
+            f"<p style=\"gray\">Remarque : ce message est envoye depuis une adresse generique, ne pas repondre.</p>\n"
             f"<p>Bonjour {self.nom},</p>\n"
-            f"<p>En cette fin de saison, nous revenons vers toi afin de te permettre de régler les sommes que tu dois au club. \n"
+            f"<p>En cette fin de saison, nous revenons vers toi afin de te permettre de regler les sommes que tu dois au club. \n"
             f"Ton solde actuel est de {self.soldeActuel:+.2f}€ au {DATE_RELEVE:%d/%m/%y}.</p>\n"
-            f"<p>Afin d'équilibrer tes comptes, nous te demandons d'effectuer un virement de la somme exacte, "
-            f"idéalement sous 7 jours.<br/>\n"
-            f"<p>Tu trouveras ci-dessous le détail de tes dettes et créances de la saison.\n"
+            f"<p>Afin d'equilibrer tes comptes, nous te demandons d'effectuer un virement de la somme exacte, "
+            f"idealement sous 7 jours.<br/>\n"
+            f"<p>Tu trouveras ci-dessous le detail de tes dettes et creances de la saison.\n"
             f"Je t'invite à revenir vers nous en cas de question : tresorier@revos.fr</p>\n")
 
         with open('modele-recap-HTML.html') as modele:
@@ -65,17 +65,17 @@ class DictLignesComptables(dict):
 class LigneComptable:
 
     def __init__(self, ligne):
-        self.idPiece = ligne['Id pièce']
+        self.idPiece = ligne['Id piece']
         self.date = datetime.strptime(ligne['Date'], '%d/%m/%Y')
-        self.intitule = ligne['Intitulé']
+        self.intitule = ligne['Intitule']
         self.personne = ligne['Personne']
         self.nouveau = True
 
-        if ligne['Débit (EUR)'] != '' and ligne['Crédit (EUR)'] == '':
-            self.montant = (-1) * Decimal(ligne['Débit (EUR)'].replace(",", "."))
+        if ligne['Debit (EUR)'] != '' and ligne['Credit (EUR)'] == '':
+            self.montant = (-1) * Decimal(ligne['Debit (EUR)'].replace(",", "."))
             self.type = "debit"
-        elif ligne['Crédit (EUR)'] != '' and ligne['Débit (EUR)'] == '':
-            self.montant = Decimal(ligne['Crédit (EUR)'].replace(",", "."))
+        elif ligne['Credit (EUR)'] != '' and ligne['Debit (EUR)'] == '':
+            self.montant = Decimal(ligne['Credit (EUR)'].replace(",", "."))
             self.type = "credit"
 
         if self.montant > 0 and ("Paiement" in self.intitule or "paiement" in self.intitule):
@@ -101,12 +101,12 @@ class LigneComptable:
 
 
 def main():
-    with open('export.csv') as f:
+    with open('export-anonyme.csv') as f:
         lectureCSV = csv.DictReader(f)
 
         extraction = []
         for ligne in lectureCSV:
-            if ligne['Id pièce'] != '':
+            if ligne['Id piece'] != '':
                 extraction.append(ligne)
             else:
                 auxiliaire = CompteAuxiliaire(iter(extraction))
