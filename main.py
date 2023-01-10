@@ -22,30 +22,18 @@ class CompteAuxiliaire:
 
         self.soldeActuel = self.soldeStrToDecimal(ligne['Solde (EUR)'])
 
-    def obtMessage(self):
-        style =(f'<style type="text/css"">\n'
-                f'.debit {{\n'
-                f'  color : red ; }}\n'
-                f'.credit {{\n'
-                f'  color : green ; }}\n'
-                f'</style>\n')
-        intro = (
-            f"<p style=\"gray\">Remarque : ce message est envoyé depuis une adresse générique, ne pas répondre.</p>\n"
-            f"<p>Bonjour {self.nom},</p>\n"
-            f"<p>En cette fin de saison, nous revenons vers toi afin de te permettre de régler les sommes que tu dois au club. \n"
-            f"Ton solde actuel est de {self.soldeActuel:+.2f}€ au {DATE_RELEVE:%d/%m/%y}.</p>\n"
-            f"<p>Afin d'équilibrer tes comptes, nous te demandons d'effectuer un virement de la somme exacte, "
-            f"idéalement sous 7 jours.<br/>\n"
-            f"Attention, le compte bancaire de l'association à changer. Les nouvelles coordonnées bancaires sont :<br/>\n"
-            f"IBAN : FR76 1027 8060 7600 0207 5320 149<br/>\n"
-            f"BIC : CMCIFR2A</p>\n"
-            f"<p>Tu trouveras ci-dessous le détail de tes dettes et créances de la saison.\n"
-            f"Je t'invite à revenir vers nous en cas de question : tresorier@revos.fr</p>\n")
+    def exportMessageDette(self, dateRelevé=datetime.now):
+        
+        cheminSortie = f"Sorties/message-{self.id}-{self.nom}.html"
+        
+        with open('modele-dette.html', 'r', encoding='utf-8') as modele, \
+        open(cheminSortie, 'w', encoding='utf-8') as sortie :
+            for ligne in modele :
+                ligneFormatée = ligne.format(dateRelevé=dateRelevé, **vars(self))
+                sortie.write(ligneFormatée)
 
-        with open('modele-recap-HTML.html', encoding='utf-8') as modele:
-            tableauSynthse = [ligne.format(dateReleve=DATE_RELEVE, **vars(self)) for ligne in modele.readlines()]
-
-        return style + intro + "".join(tableauSynthse)
+            return True
+        return False
 
     @staticmethod
     def soldeStrToDecimal(solde):
@@ -114,11 +102,8 @@ def main():
             else:
                 auxiliaire = CompteAuxiliaire(iter(extraction))
                 if auxiliaire.soldeActuel < Decimal(0):
-                    message = auxiliaire.obtMessage()
-                    print(message)
+                    message = auxiliaire.exportMessageDette(dateRelevé=DATE_RELEVE)
                 extraction = []
-                print()
-
 
 
 main()
