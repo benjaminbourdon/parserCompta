@@ -15,9 +15,9 @@ class CompteAuxiliaire:
         self.dateInitiale = datetime.strptime(ligne['Intitulé'][-8:], '%d/%m/%y')
 
         ligne = next(extraction)
-        self.mouvements = DictLignesComptables()
+        self.mouvements = ListLignesComptables()
         while ligne['Id pièce'] != "Fin":
-            self.mouvements[ligne['Id pièce']] = LigneComptable(ligne)
+            self.mouvements.append(LigneComptable(ligne))
             ligne = next(extraction)
 
         self.soldeActuel = self.soldeStrToDecimal(ligne['Solde (EUR)'])
@@ -42,7 +42,7 @@ class CompteAuxiliaire:
             f"<p>Tu trouveras ci-dessous le détail de tes dettes et créances de la saison.\n"
             f"Je t'invite à revenir vers nous en cas de question : tresorier@revos.fr</p>\n")
 
-        with open('modele-recap-HTML.html') as modele:
+        with open('modele-recap-HTML.html', encoding='utf-8') as modele:
             tableauSynthse = [ligne.format(dateReleve=DATE_RELEVE, **vars(self)) for ligne in modele.readlines()]
 
         return style + intro + "".join(tableauSynthse)
@@ -59,10 +59,10 @@ class CompteAuxiliaire:
         return montant
 
 
-class DictLignesComptables(dict):
+class ListLignesComptables(list):
 
     def __format__(self, format_spec):
-        return "".join([element.__format__(format_spec) for cle, element in self.items()])
+        return "".join([element.__format__(format_spec) for element in self])
 
 
 class LigneComptable:
@@ -104,7 +104,7 @@ class LigneComptable:
 
 
 def main():
-    with open('export.csv') as f:
+    with open('export.csv', encoding='utf-8') as f:
         lectureCSV = csv.DictReader(f)
 
         extraction = []
