@@ -2,7 +2,7 @@ import csv
 from datetime import datetime
 from decimal import *
 
-DATE_RELEVE = datetime.strptime("30/06/2022", '%d/%m/%Y')
+DATE_RELEVE = datetime.strptime("18/01/2023", '%d/%m/%Y')
 
 class CompteAuxiliaire:
 
@@ -12,7 +12,7 @@ class CompteAuxiliaire:
 
         ligne = next(extraction)
         self.soldeInitial = self.soldeStrToDecimal(ligne['Solde (EUR)'])
-        self.dateInitiale = datetime.strptime(ligne['Intitulé'][-8:], '%d/%m/%y')
+        self.dateInitiale = datetime.strptime(str(ligne['Intitulé'][-10:]), '%d/%m/%Y')
 
         ligne = next(extraction)
         self.mouvements = ListLignesComptables()
