@@ -1,5 +1,5 @@
-export.csv
-export.xlsx
-export2.csv
-liste-membres.csv
-mail.py
+export*
+*.csv
+*.xls
+Sorties
+.vscode
